@@ -5,6 +5,7 @@ import org.LLD.Constants.Enums.MovieGenre;
 import org.LLD.Entity.Actor;
 import org.LLD.Entity.Director;
 import org.LLD.Repository.ActorRepository;
+import org.LLD.Repository.DirectorRepository;
 
 import java.util.Date;
 import java.util.HashMap;
@@ -14,7 +15,9 @@ import java.util.Map;
 public class MovieServiceIMPL implements MovieService{
 
     ActorRepository actorRepository = new ActorRepository();
+    DirectorRepository directorRepository = new DirectorRepository();
     Integer actorIndex = 1;
+    Integer directorIndex = 1;
     @Override
     public String createMovie(String movieName, MovieGenre movieGenre, Director movieDirector, Date movieReleaseDate, List<Actor> cast) {
         return null;
@@ -22,7 +25,29 @@ public class MovieServiceIMPL implements MovieService{
 
     @Override
     public String addDirector(String firstName, String secondName, Gender personGender, Integer numberOfMovies, Integer numberOfAwards, boolean producedMovies, Double highestGrosser, String personIntro) {
-        return null;
+        Director director;
+        try {
+            director = Director.builder()
+                    .firstName(firstName)
+                    .secondName(secondName)
+                    .personGender(personGender)
+                    .numberOfMovies(numberOfMovies)
+                    .numberOfAwards(numberOfAwards)
+                    .producedMovies(producedMovies)
+                    .highestGrosser(highestGrosser)
+                    .build();
+        }catch (Exception exception){
+            throw new IllegalArgumentException("ERROR IN CREATING DIRECTOR ENTITY INSTANCE. TRY WITH DIFFERENT VALUES");
+        }
+        Map<Integer, Director> directorPutter = new HashMap<>();
+        directorPutter.put(directorIndex, director);
+        directorRepository.setDirectorMap(directorPutter);
+
+        String directorCreatedResponse = "CREATED DIRECTOR WITH ID:" + directorIndex + ": " + directorRepository.getDirectorMap().get(directorIndex) + " AND HIS NAME IS: " + directorRepository.getDirectorMap().get(directorIndex).getFirstName() + "-" + directorRepository.getDirectorMap().get(directorIndex).getSecondName();
+
+        directorIndex++;
+
+        return directorCreatedResponse;
     }
 
     @Override

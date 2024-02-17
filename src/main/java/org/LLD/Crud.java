@@ -22,16 +22,21 @@ public class Crud {
                         //create actor
 
                         System.out.println(movieService.addActor(input[2],input[3], Gender.valueOf(input[4]),Integer.valueOf( input[5]),Integer.valueOf(input[6]),Integer.valueOf(input[7]),Integer.valueOf(input[8]),input[9]));
-                        break;
 
                     } else if (input[1].equals(CreateType.director.toString())) {
                         //create director
-                        System.out.println("director banega idhar"); break;
+
+                        System.out.println(movieService.addDirector(input[2],input[3], Gender.valueOf(input[4]),Integer.valueOf( input[5]),Integer.valueOf(input[6]),Boolean.parseBoolean(input[7]),Double.valueOf(input[8]),input[9]));
+
                     } else if (input[1].equals(CreateType.movie.toString())) {
                         //create movie
-                        System.out.println("movie banega idhar"); break;
+                        System.out.println("movie banega idhar");
                     }
                     else System.out.println("INVALID CREATE COMMAND. CHOOSE EITHER ACTOR/DIRECTOR/MOVIE.");
+                    break;
+                }
+                default:{
+                    System.out.println("THERE HAS BEEN AN ERROR");
                 }
             }
         }
