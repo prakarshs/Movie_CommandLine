@@ -20,4 +20,7 @@ public interface MovieCrudService {
     Actor findActorById(Integer castInput);
 
     void listAllDirectors();
+
+    void displayActor(Actor actor);
+    void displayDirector(Director director);
 }

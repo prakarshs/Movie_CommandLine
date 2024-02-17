@@ -4,6 +4,7 @@ import org.LLD.Constants.Commands;
 import org.LLD.Constants.Enums.CreateType;
 import org.LLD.Constants.Enums.Gender;
 import org.LLD.Constants.Enums.MovieGenre;
+import org.LLD.Constants.Enums.ShowFilter;
 import org.LLD.Entity.Actor;
 import org.LLD.Entity.Director;
 import org.LLD.Service.MovieCrudService;
@@ -57,16 +58,39 @@ public class Crud {
                         List<Actor> cast = Arrays.stream(castInput).map(actorInput -> movieCrudService.findActorById(Integer.parseInt(actorInput))).toList();
 
                         System.out.println("All Cast Is Valid !");
-                        System.out.println("Now You Can Add Your Movie !");
+                        System.out.println("Now Your Movie Will Be Added !");
 
                         System.out.println(movieCrudService.createMovie(input[2], MovieGenre.valueOf(input[3]), director, input[4], cast));
-
-
-
 
                     }
                     else {
                         System.out.println("INVALID CREATE COMMAND. CHOOSE EITHER ACTOR/DIRECTOR/MOVIE.");
+                    }
+                }
+                break;
+
+                case Commands.SHOW: {
+                    if(input[1].equals(String.valueOf(ShowFilter.actor))){
+                        System.out.println("||----- Checking For Actor Ids Validity -----||");
+                        Actor actor = movieCrudService.findActorById(Integer.parseInt(input[2]));
+                         if(actor==null){
+                           System.out.println("Actor Doesnt Exist. Retry.");
+                           break;
+                       }
+                       System.out.println("Here's Your Required Actor Details: ");
+                       movieCrudService.displayActor(actor);
+
+                    }
+                    else if (input[1].equals(String.valueOf(ShowFilter.director))) {
+                        System.out.println("||----- Checking For Director Ids Validity -----||");
+                        Director director = movieCrudService.findDirectorById(Integer.parseInt(input[2]));
+                        if(director==null){
+                            System.out.println("Director Doesnt Exist. Retry.");
+                            break;
+                        }
+                        System.out.println("Here's Your Required Director Details: ");
+                        movieCrudService.displayDirector(director);
+
                     }
                 }
                 break;

@@ -8,6 +8,7 @@ import org.LLD.Entity.Movie;
 import org.LLD.Repository.ActorRepository;
 import org.LLD.Repository.DirectorRepository;
 import org.LLD.Repository.MovieRepository;
+import org.LLD.Util.DisplayDetails;
 import org.LLD.Util.ValidityChecks;
 
 import java.util.*;
@@ -18,6 +19,7 @@ public class MovieCrudServiceIMPL implements MovieCrudService {
     DirectorRepository directorRepository = new DirectorRepository();
     MovieRepository movieRepository = new MovieRepository();
     ValidityChecks validityChecks = new ValidityChecks();
+    DisplayDetails displayDetails = new DisplayDetails();
     Integer actorIndex = 1;
     Integer directorIndex = 1;
     Integer movieIndex = 1;
@@ -61,6 +63,7 @@ public class MovieCrudServiceIMPL implements MovieCrudService {
                     .numberOfAwards(numberOfAwards)
                     .producedMovies(producedMovies)
                     .highestGrosser(highestGrosser)
+                    .personIntro(personIntro)
                     .build();
         } catch (Exception exception) {
             throw new IllegalArgumentException("ERROR IN CREATING DIRECTOR ENTITY INSTANCE. TRY WITH DIFFERENT VALUES");
@@ -86,6 +89,7 @@ public class MovieCrudServiceIMPL implements MovieCrudService {
                     .numberOfAwards(numberOfAwards)
                     .numberOfLeadRoles(numberOfLeadRoles)
                     .numberOfSupportRoles(numberOfSupportRoles)
+                    .personIntro(personIntro)
                     .build();
         } catch (Exception exception) {
             throw new IllegalArgumentException("ERROR IN CREATING ACTOR ENTITY INSTANCE. TRY WITH DIFFERENT VALUES");
@@ -115,5 +119,15 @@ public class MovieCrudServiceIMPL implements MovieCrudService {
         for (Map.Entry<Integer, Director> entry :directorRepository.getDirectorMap().entrySet()) {
             System.out.println("Director ID: " + entry.getKey() + ", Director: " + entry.getValue());
         }
+    }
+
+    @Override
+    public void displayActor(Actor actor) {
+        displayDetails.displayThisActor(actor);
+    }
+
+    @Override
+    public void displayDirector(Director director) {
+        displayDetails.displayThisDirector(director);
     }
 }
