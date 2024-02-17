@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import org.LLD.Entity.Actor;
 import org.LLD.Entity.Director;
 
+import java.util.HashMap;
 import java.util.Map;
 
 @Data
@@ -14,5 +15,5 @@ import java.util.Map;
 @AllArgsConstructor
 @Builder
 public class DirectorRepository {
-    private Map<Integer, Director> directorMap;
+    private Map<Integer, Director> directorMap = new HashMap<>();
 }

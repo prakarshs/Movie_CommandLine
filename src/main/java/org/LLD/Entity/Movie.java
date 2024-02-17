@@ -18,6 +18,7 @@ public class Movie {
     private String movieName;
     private MovieGenre movieGenre;
     private Director movieDirector;
-    private Date movieReleaseDate;
+    private String movieReleaseYear;
     private List<Actor> cast;
+
 }

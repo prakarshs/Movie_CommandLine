@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.LLD.Entity.Actor;
 
+import java.util.HashMap;
 import java.util.Map;
 
 @Data
@@ -13,5 +14,5 @@ import java.util.Map;
 @AllArgsConstructor
 @Builder
 public class ActorRepository {
-    private Map<Integer, Actor> actorMap;
+    private Map<Integer, Actor> actorMap = new HashMap<>();
 }
