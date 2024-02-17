@@ -4,8 +4,10 @@ import org.LLD.Constants.Enums.Gender;
 import org.LLD.Constants.Enums.MovieGenre;
 import org.LLD.Entity.Actor;
 import org.LLD.Entity.Director;
+import org.LLD.Entity.Movie;
 import org.LLD.Repository.ActorRepository;
 import org.LLD.Repository.DirectorRepository;
+import org.LLD.Repository.MovieRepository;
 import org.LLD.Util.ValidityChecks;
 
 import java.util.*;
@@ -14,13 +16,35 @@ public class MovieCrudServiceIMPL implements MovieCrudService {
 
     ActorRepository actorRepository = new ActorRepository();
     DirectorRepository directorRepository = new DirectorRepository();
+    MovieRepository movieRepository = new MovieRepository();
     ValidityChecks validityChecks = new ValidityChecks();
     Integer actorIndex = 1;
     Integer directorIndex = 1;
+    Integer movieIndex = 1;
 
     @Override
     public String createMovie(String movieName, MovieGenre movieGenre, Director movieDirector, String movieReleaseDate, List<Actor> cast) {
-        return null;
+        String movieId = movieIndex + "_" + movieGenre + "_" + movieReleaseDate;
+        Movie movie;
+        try {
+            movie = Movie.builder()
+                    .movieId(movieId)
+                    .movieName(movieName)
+                    .movieGenre(movieGenre)
+                    .movieDirector(movieDirector)
+                    .movieReleaseYear(movieReleaseDate)
+                    .cast(cast)
+                    .build();
+        }catch (Exception exception) {
+            throw new IllegalArgumentException("ERROR IN CREATING MOVIE ENTITY INSTANCE. TRY WITH DIFFERENT VALUES");
+        }
+        movieRepository.getMovieMap().put(movieIndex, movie);
+
+        String movieCreatedResponse = "CREATED MOVIE WITH ID: " + movieRepository.getMovieMap().get(movieIndex).getMovieId() + " AND ITS NAME IS: " + movieRepository.getMovieMap().get(movieIndex).getMovieName()+ " AND IS DIRECTED BY: " + movieRepository.getMovieMap().get(movieIndex).getMovieDirector().getFirstName() + movieRepository.getMovieMap().get(movieIndex).getMovieDirector().getSecondName();
+
+        movieIndex++;
+
+        return movieCreatedResponse;
     }
 
     @Override

@@ -3,6 +3,7 @@ package org.LLD;
 import org.LLD.Constants.Commands;
 import org.LLD.Constants.Enums.CreateType;
 import org.LLD.Constants.Enums.Gender;
+import org.LLD.Constants.Enums.MovieGenre;
 import org.LLD.Entity.Actor;
 import org.LLD.Entity.Director;
 import org.LLD.Service.MovieCrudService;
@@ -48,10 +49,19 @@ public class Crud {
                         System.out.println("Enter Your Cast Ids ");
                         String[] castInput = scanner.nextLine().trim().split(" ");
                         System.out.println("||----- Checking For Cast Ids Validity -----||");
-                        System.out.println(castInput[0] + "," + castInput[1] + "," + castInput[2]);
+                        boolean isAnyCastInvalid = Arrays.stream(castInput).anyMatch(actor -> movieCrudService.findActorById(Integer.parseInt(actor))==null);
+                        if(isAnyCastInvalid){
+                            System.out.println("Unfortunately Some Of Actor(s) invalid.");
+                            break;
+                        }
                         List<Actor> cast = Arrays.stream(castInput).map(actorInput -> movieCrudService.findActorById(Integer.parseInt(actorInput))).toList();
 
-                        System.out.println("All Cast Is Valid!");
+                        System.out.println("All Cast Is Valid !");
+                        System.out.println("Now You Can Add Your Movie !");
+
+                        System.out.println(movieCrudService.createMovie(input[2], MovieGenre.valueOf(input[3]), director, input[4], cast));
+
+
 
 
                     }
