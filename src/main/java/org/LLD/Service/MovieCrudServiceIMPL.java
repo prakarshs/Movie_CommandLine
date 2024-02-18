@@ -171,6 +171,17 @@ public class MovieCrudServiceIMPL implements MovieCrudService {
     }
 
     @Override
+    public void listAllDirectorProducer(Boolean more) {
+        listItems.directorProducer(more,directorRepository);
+    }
+
+    @Override
+    public void listAllDirectorGrosser(Integer target, Boolean more) {
+        listItems.directorGrosserTarget(target,more,directorRepository);
+
+    }
+
+    @Override
     public void listAllDirectors() {
         listItems.directorListDisplay(directorRepository);
     }

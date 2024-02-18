@@ -6,7 +6,6 @@ import org.LLD.Entity.Actor;
 import org.LLD.Entity.Director;
 import org.LLD.Entity.Movie;
 
-import java.util.Date;
 import java.util.List;
 
 public interface MovieCrudService {
@@ -40,4 +39,8 @@ public interface MovieCrudService {
     void listAllDirectorAward(Integer target, Boolean more);
 
     void listAllDirectorMovie(Integer target, Boolean more);
+
+    void listAllDirectorProducer(Boolean more);
+
+    void listAllDirectorGrosser(Integer target, Boolean more);
 }

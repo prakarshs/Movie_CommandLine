@@ -165,4 +165,45 @@ public class ListItems {
         }
         System.out.println("<----- Listed All Directors ----->");
     }
+
+    public void directorProducer(Boolean more, DirectorRepository directorRepository) {
+        if(more){
+            System.out.println("Directors Who Are Also Producers Are: ");
+            for(Map.Entry<Integer, Director> directorEntry : directorRepository.getDirectorMap().entrySet()){
+                if(directorEntry.getValue().isProducedMovies()){
+                    System.out.println(directorEntry.getValue().getFirstName() +" "+ directorEntry.getValue().getSecondName() + " Is A Producer !");
+                }
+            }
+        }
+        else{
+            System.out.println("Directors Who Are Not Producers Are: ");
+            for(Map.Entry<Integer, Director> directorEntry : directorRepository.getDirectorMap().entrySet()){
+                if(!directorEntry.getValue().isProducedMovies()){
+                    System.out.println(directorEntry.getValue().getFirstName() +" "+ directorEntry.getValue().getSecondName() + " Is Not A Producer !");
+                }
+            }
+        }
+        System.out.println("<----- Listed All Directors ----->");
+    }
+
+    public void directorGrosserTarget(Integer target, Boolean more, DirectorRepository directorRepository) {
+        if(more){
+            System.out.println("Directors Who Have Grossed More Than " + target + " Are: ");
+            for (Map.Entry<Integer,Director> directorEntry : directorRepository.getDirectorMap().entrySet()){
+                if (directorEntry.getValue().getHighestGrosser() >= target){
+
+                    System.out.println(directorEntry.getValue().getFirstName() + directorEntry.getValue().getSecondName() +" Has Grossed " + directorEntry.getValue().getHighestGrosser());
+                }
+            }
+        }
+        else{
+            System.out.println("Actors Who Have Grossed Less Than " + target + " Are: ");
+            for (Map.Entry<Integer,Director> directorEntry : directorRepository.getDirectorMap().entrySet()){
+                if (directorEntry.getValue().getHighestGrosser() < target){
+                    System.out.println(directorEntry.getValue().getFirstName() + directorEntry.getValue().getSecondName() +" Has Grossed " + directorEntry.getValue().getHighestGrosser());
+                }
+            }
+        }
+        System.out.println("<----- Listed All Directors ----->");
+    }
 }

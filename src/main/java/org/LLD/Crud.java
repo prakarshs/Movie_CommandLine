@@ -145,6 +145,8 @@ public class Crud {
                         else if (input[2].equals(String.valueOf(ActorFilterLessThan.support_less_than))) {
                             more = false;
                             movieCrudService.listAllActorSupport(target,more);
+                        } else {
+                            System.out.println("!----! Error in Actor Filter !----!");
                         }
 
                     }
@@ -153,8 +155,19 @@ public class Crud {
                             movieCrudService.listAllDirectors();
                             break;
                         }
-                        Integer target =Integer.parseInt(input[3]);
                         Boolean more = true;
+                        if (input[2].equals(String.valueOf(DirectorFilterMoreThanAndTrue.is_producer))) {
+                            movieCrudService.listAllDirectorProducer(more);
+                            break;
+                        }
+                        else if (input[2].equals(String.valueOf(DirectorFilterLessThanAndFalse.not_producer))) {
+                            more = false;
+                            movieCrudService.listAllDirectorProducer(more);
+                            break;
+                        }
+
+                        Integer target =Integer.parseInt(input[3]);
+
                         if (input[2].equals(String.valueOf(DirectorFilterMoreThanAndTrue.award_more_than))) {
                             movieCrudService.listAllDirectorAward(target,more);
                         }
@@ -169,19 +182,15 @@ public class Crud {
                             more = false;
                             movieCrudService.listAllDirectorMovie(target,more);
                         }
-                        else if (input[2].equals(String.valueOf(ActorFilterMoreThan.lead_more_than))) {
-                            movieCrudService.listAllActorLead(target,more);
+                        else if (input[2].equals(String.valueOf(DirectorFilterMoreThanAndTrue.grosser_more_than))) {
+                            movieCrudService.listAllDirectorGrosser(target,more);
                         }
-                        else if (input[2].equals(String.valueOf(ActorFilterLessThan.lead_less_than))) {
+                        else if (input[2].equals(String.valueOf(DirectorFilterLessThanAndFalse.grosser_less_than))) {
                             more = false;
-                            movieCrudService.listAllActorLead(target,more);
+                            movieCrudService.listAllDirectorGrosser(target,more);
                         }
-                        else if (input[2].equals(String.valueOf(ActorFilterMoreThan.support_more_than))) {
-                            movieCrudService.listAllActorSupport(target,more);
-                        }
-                        else if (input[2].equals(String.valueOf(ActorFilterLessThan.support_less_than))) {
-                            more = false;
-                            movieCrudService.listAllActorSupport(target,more);
+                        else {
+                            System.out.println("!----! Error In Director Filter !-----!");
                         }
 
                     }
