@@ -36,4 +36,8 @@ public interface MovieCrudService {
     void listAllActorLead(Integer target, Boolean more);
 
     void listAllActorSupport(Integer target, Boolean more);
+
+    void listAllDirectorAward(Integer target, Boolean more);
+
+    void listAllDirectorMovie(Integer target, Boolean more);
 }

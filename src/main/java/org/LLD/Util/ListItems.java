@@ -1,8 +1,10 @@
 package org.LLD.Util;
 
 import org.LLD.Entity.Actor;
+import org.LLD.Entity.Director;
 import org.LLD.Entity.Movie;
 import org.LLD.Repository.ActorRepository;
+import org.LLD.Repository.DirectorRepository;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -111,5 +113,56 @@ public class ListItems {
             }
         }
         System.out.println("<----- Listed All Actors ----->");
+    }
+
+    public void directorListDisplay(DirectorRepository directorRepository) {
+        System.out.println("Here Are All Directors: ");
+        for(Map.Entry<Integer, Director> counter : directorRepository.getDirectorMap().entrySet()){
+            System.out.println("\n"+ "Director Number: "+ counter.getKey());
+            displayDetails.displayThisDirector(counter.getValue());
+        }
+        System.out.println("<----- Listed All Directors ----->");
+    }
+
+    public void directorAwardTarget(Integer target, Boolean more, DirectorRepository directorRepository) {
+        if(more){
+            System.out.println("Directors Who Have Won Awards More Than " + target + " Are: ");
+            for (Map.Entry<Integer,Director> directorEntry : directorRepository.getDirectorMap().entrySet()){
+                if (directorEntry.getValue().getNumberOfAwards() >= target){
+
+                    System.out.println(directorEntry.getValue().getFirstName() + directorEntry.getValue().getSecondName() +" Has Won " + directorEntry.getValue().getNumberOfAwards());
+                }
+            }
+        }
+        else{
+            System.out.println("Actors Who Have Won Awards Less Than " + target + " Are: ");
+            for (Map.Entry<Integer,Director> directorEntry : directorRepository.getDirectorMap().entrySet()){
+                if (directorEntry.getValue().getNumberOfAwards() < target){
+                    System.out.println(directorEntry.getValue().getFirstName() + directorEntry.getValue().getSecondName() +" Has Won " + directorEntry.getValue().getNumberOfAwards());
+                }
+            }
+        }
+        System.out.println("<----- Listed All Directors ----->");
+    }
+
+    public void directorMovieTarget(Integer target, Boolean more, DirectorRepository directorRepository) {
+        if(more){
+            System.out.println("Directors Who Have Done Movies More Than " + target + " Are: ");
+            for (Map.Entry<Integer,Director> directorEntry : directorRepository.getDirectorMap().entrySet()){
+                if (directorEntry.getValue().getNumberOfMovies() >= target){
+
+                    System.out.println(directorEntry.getValue().getFirstName() + directorEntry.getValue().getSecondName() +" Has Done " + directorEntry.getValue().getNumberOfMovies());
+                }
+            }
+        }
+        else{
+            System.out.println("Directors Who Have Done Movies Less Than " + target + " Are: ");
+            for (Map.Entry<Integer,Director> directorEntry : directorRepository.getDirectorMap().entrySet()){
+                if (directorEntry.getValue().getNumberOfMovies() < target){
+                    System.out.println(directorEntry.getValue().getFirstName() + directorEntry.getValue().getSecondName() +" Has Done " + directorEntry.getValue().getNumberOfMovies());
+                }
+            }
+        }
+        System.out.println("<----- Listed All Directors ----->");
     }
 }

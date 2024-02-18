@@ -3,7 +3,9 @@ package org.LLD;
 import org.LLD.Constants.Commands;
 import org.LLD.Constants.Enums.CreateType;
 import org.LLD.Constants.Enums.Filters.LessThan.ActorFilterLessThan;
+import org.LLD.Constants.Enums.Filters.LessThan.DirectorFilterLessThanAndFalse;
 import org.LLD.Constants.Enums.Filters.MoreThan.ActorFilterMoreThan;
+import org.LLD.Constants.Enums.Filters.MoreThan.DirectorFilterMoreThanAndTrue;
 import org.LLD.Constants.Enums.Gender;
 import org.LLD.Constants.Enums.MovieGenre;
 import org.LLD.Constants.Enums.Filters.ShowFilterType;
@@ -112,6 +114,7 @@ public class Crud {
                     if(input[1].equals(String.valueOf(ShowFilterType.actor))){
                         if(input[2].equals(String.valueOf(ActorFilterMoreThan.none))){
                             movieCrudService.listAllActors();
+                            break;
                         }
                         Integer target =Integer.parseInt(input[3]);
                         Boolean more = true;
@@ -128,6 +131,43 @@ public class Crud {
                         else if (input[2].equals(String.valueOf(ActorFilterLessThan.movie_less_than))) {
                             more = false;
                             movieCrudService.listAllActorMovie(target,more);
+                        }
+                        else if (input[2].equals(String.valueOf(ActorFilterMoreThan.lead_more_than))) {
+                            movieCrudService.listAllActorLead(target,more);
+                        }
+                        else if (input[2].equals(String.valueOf(ActorFilterLessThan.lead_less_than))) {
+                            more = false;
+                            movieCrudService.listAllActorLead(target,more);
+                        }
+                        else if (input[2].equals(String.valueOf(ActorFilterMoreThan.support_more_than))) {
+                            movieCrudService.listAllActorSupport(target,more);
+                        }
+                        else if (input[2].equals(String.valueOf(ActorFilterLessThan.support_less_than))) {
+                            more = false;
+                            movieCrudService.listAllActorSupport(target,more);
+                        }
+
+                    }
+                    else if(input[1].equals(String.valueOf(ShowFilterType.director))){
+                        if(input[2].equals(String.valueOf(DirectorFilterMoreThanAndTrue.none))){
+                            movieCrudService.listAllDirectors();
+                            break;
+                        }
+                        Integer target =Integer.parseInt(input[3]);
+                        Boolean more = true;
+                        if (input[2].equals(String.valueOf(DirectorFilterMoreThanAndTrue.award_more_than))) {
+                            movieCrudService.listAllDirectorAward(target,more);
+                        }
+                        else if (input[2].equals(String.valueOf(DirectorFilterLessThanAndFalse.award_less_than))) {
+                            more = false;
+                            movieCrudService.listAllDirectorAward(target,more);
+                        }
+                        else if (input[2].equals(String.valueOf(DirectorFilterMoreThanAndTrue.movie_more_than))) {
+                            movieCrudService.listAllDirectorMovie(target,more);
+                        }
+                        else if (input[2].equals(String.valueOf(DirectorFilterLessThanAndFalse.movie_less_than))) {
+                            more = false;
+                            movieCrudService.listAllDirectorMovie(target,more);
                         }
                         else if (input[2].equals(String.valueOf(ActorFilterMoreThan.lead_more_than))) {
                             movieCrudService.listAllActorLead(target,more);

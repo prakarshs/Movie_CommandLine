@@ -121,14 +121,6 @@ public class MovieCrudServiceIMPL implements MovieCrudService {
     }
 
     @Override
-    public void listAllDirectors() {
-        System.out.println("HERE'S ALL YOUR DIRECTORS"+ directorRepository.getDirectorMap().size());
-        for (Map.Entry<Integer, Director> entry :directorRepository.getDirectorMap().entrySet()) {
-            System.out.println("Director ID: " + entry.getKey() + ", Director: " + entry.getValue());
-        }
-    }
-
-    @Override
     public void displayActor(Actor actor) {
         displayDetails.displayThisActor(actor);
     }
@@ -166,6 +158,21 @@ public class MovieCrudServiceIMPL implements MovieCrudService {
     @Override
     public void listAllActorSupport(Integer target, Boolean more) {
         listItems.actorSupportTarget(target,more,actorRepository);
+    }
+
+    @Override
+    public void listAllDirectorAward(Integer target, Boolean more) {
+        listItems.directorAwardTarget(target,more,directorRepository);
+    }
+
+    @Override
+    public void listAllDirectorMovie(Integer target, Boolean more) {
+        listItems.directorMovieTarget(target,more,directorRepository);
+    }
+
+    @Override
+    public void listAllDirectors() {
+        listItems.directorListDisplay(directorRepository);
     }
 
 
