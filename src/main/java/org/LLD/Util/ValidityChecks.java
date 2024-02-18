@@ -35,7 +35,7 @@ public class ValidityChecks {
         Movie movie = movieRepository.getMovieMap().get(movieId);
         if(movie==null){
             System.out.println("THE GIVEN MOVIE ID DOESNT EXIST. TRY AGAIN WITH A DIFFERENT ID.");
-        }else System.out.println("Actor Id Is Valid !!");
+        }else System.out.println("Movie Id Is Valid !!");
         return movie;
     }
 }

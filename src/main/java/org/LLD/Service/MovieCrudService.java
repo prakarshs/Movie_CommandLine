@@ -26,4 +26,6 @@ public interface MovieCrudService {
     void displayActor(Actor actor);
     void displayDirector(Director director);
     void displayMovie(Movie movie);
+
+    void listAllActors();
 }

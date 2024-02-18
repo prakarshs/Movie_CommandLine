@@ -7,10 +7,13 @@ import org.LLD.Entity.Actor;
 import org.LLD.Entity.Director;
 import org.LLD.Entity.Movie;
 
+import java.util.List;
+
 @AllArgsConstructor
 @Data
 @Builder
 public class DisplayDetails {
+
     public void displayThisActor(Actor actor) {
         System.out.println(
                 "Actor First Name: "+ actor.getFirstName() + "\n"
@@ -37,11 +40,14 @@ public class DisplayDetails {
     }
 
     public void displayThisMovie(Movie movie) {
+        ListItems listItems = new ListItems();
+        List<String> actors = listItems.listActorsInMovie(movie);
+
         System.out.println("Movie Reg Code: " + movie.getMovieRegCode() + "\n"
                 + "Movie Name: " + movie.getMovieName() + "\n"
                 + "Movie Genre: "+ movie.getMovieGenre() + "\n"
                 + "Movie Director: "+ movie.getMovieDirector().getFirstName() + "\n"
-                + "Movie Cast: "+ movie.getCast() + "\n"
+                + "Movie Cast: "+ actors + "\n"
                 + "Movie Release Date: "+ movie.getMovieReleaseYear()
                 );
     }

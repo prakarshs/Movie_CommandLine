@@ -9,6 +9,7 @@ import org.LLD.Repository.ActorRepository;
 import org.LLD.Repository.DirectorRepository;
 import org.LLD.Repository.MovieRepository;
 import org.LLD.Util.DisplayDetails;
+import org.LLD.Util.ListItems;
 import org.LLD.Util.ValidityChecks;
 
 import java.util.*;
@@ -20,6 +21,7 @@ public class MovieCrudServiceIMPL implements MovieCrudService {
     MovieRepository movieRepository = new MovieRepository();
     ValidityChecks validityChecks = new ValidityChecks();
     DisplayDetails displayDetails = new DisplayDetails();
+    ListItems listItems = new ListItems();
     Integer actorIndex = 1;
     Integer directorIndex = 1;
     Integer movieIndex = 1;
@@ -139,6 +141,11 @@ public class MovieCrudServiceIMPL implements MovieCrudService {
     @Override
     public void displayMovie(Movie movie) {
         displayDetails.displayThisMovie(movie);
+    }
+
+    @Override
+    public void listAllActors() {
+        listItems.actorListDisplay(actorRepository);
     }
 
 

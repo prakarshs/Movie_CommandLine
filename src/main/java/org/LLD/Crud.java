@@ -2,9 +2,10 @@ package org.LLD;
 
 import org.LLD.Constants.Commands;
 import org.LLD.Constants.Enums.CreateType;
+import org.LLD.Constants.Enums.Filters.MoreThan.ActorFilterMoreThan;
 import org.LLD.Constants.Enums.Gender;
 import org.LLD.Constants.Enums.MovieGenre;
-import org.LLD.Constants.Enums.ShowFilter;
+import org.LLD.Constants.Enums.Filters.ShowFilterType;
 import org.LLD.Entity.Actor;
 import org.LLD.Entity.Director;
 import org.LLD.Entity.Movie;
@@ -71,7 +72,7 @@ public class Crud {
                 break;
 
                 case Commands.SHOW: {
-                    if(input[1].equals(String.valueOf(ShowFilter.actor))){
+                    if(input[1].equals(String.valueOf(ShowFilterType.actor))){
                         System.out.println("||----- Checking For Actor Ids Validity -----||");
                         Actor actor = movieCrudService.findActorById(Integer.parseInt(input[2]));
                          if(actor==null){
@@ -82,7 +83,7 @@ public class Crud {
                        movieCrudService.displayActor(actor);
 
                     }
-                    else if (input[1].equals(String.valueOf(ShowFilter.director))) {
+                    else if (input[1].equals(String.valueOf(ShowFilterType.director))) {
                         System.out.println("||----- Checking For Director Ids Validity -----||");
                         Director director = movieCrudService.findDirectorById(Integer.parseInt(input[2]));
                         if(director==null){
@@ -93,7 +94,7 @@ public class Crud {
                         movieCrudService.displayDirector(director);
 
                     }
-                    else if (input[1].equals(String.valueOf(ShowFilter.movie))) {
+                    else if (input[1].equals(String.valueOf(ShowFilterType.movie))) {
                         System.out.println("||----- Checking For Movie Ids Validity -----||");
                         Movie movie = movieCrudService.findMovieById(Integer.parseInt(input[2]));
                         if(movie==null){
@@ -104,9 +105,15 @@ public class Crud {
                         movieCrudService.displayMovie(movie);
 
                     }
-
                 }
                 break;
+                case Commands.SHOW_ALL: {
+                    if(input[1].equals(String.valueOf(ShowFilterType.actor))){
+                        if(input[2].equals(String.valueOf(ActorFilterMoreThan.none))){
+                            movieCrudService.listAllActors();
+                        }
+                    }
+                }
                 default: {
                     System.out.println("THERE HAS BEEN AN ERROR");
                 }
