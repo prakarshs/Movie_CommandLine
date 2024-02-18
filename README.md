@@ -31,3 +31,14 @@
 4. Actor Exclusive 
     * numberOfLeadRoles
     * numberOfSupportRoles
+
+---
+
+Display Commands:
+
+1. actor/director
+   * none
+   * awards more/less than n
+   * lead roles more/less than n
+   * support roles more/less than n
+   
