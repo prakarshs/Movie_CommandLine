@@ -43,4 +43,12 @@ public interface MovieCrudService {
     void listAllDirectorProducer(Boolean more);
 
     void listAllDirectorGrosser(Integer target, Boolean more);
+
+    void listAllMovies();
+
+    void listMovieByActor(Integer id);
+
+    void listMovieByDirector(Integer id);
+
+    void listMovieByGenre(MovieGenre genre);
 }

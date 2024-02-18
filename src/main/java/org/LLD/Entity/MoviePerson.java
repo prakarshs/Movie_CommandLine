@@ -12,6 +12,7 @@ import org.LLD.Constants.Enums.Gender;
 @AllArgsConstructor
 @SuperBuilder
 public abstract class MoviePerson {
+    private Integer personId;
     private String firstName;
     private String secondName;
     private Gender personGender;

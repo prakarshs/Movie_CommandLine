@@ -1,10 +1,12 @@
 package org.LLD.Util;
 
+import org.LLD.Constants.Enums.MovieGenre;
 import org.LLD.Entity.Actor;
 import org.LLD.Entity.Director;
 import org.LLD.Entity.Movie;
 import org.LLD.Repository.ActorRepository;
 import org.LLD.Repository.DirectorRepository;
+import org.LLD.Repository.MovieRepository;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -205,5 +207,50 @@ public class ListItems {
             }
         }
         System.out.println("<----- Listed All Directors ----->");
+    }
+
+    public void movieListDisplay(MovieRepository movieRepository) {
+        System.out.println("Here Are All Movies: ");
+        for (Map.Entry<Integer, Movie> movieEntry : movieRepository.getMovieMap().entrySet()){
+            displayDetails.displayThisMovie(movieEntry.getValue());
+        }
+    }
+
+    public void movieByActor(Integer actorId, MovieRepository movieRepository, ActorRepository actorRepository) {
+        Actor actor = actorRepository.getActorMap().get(actorId);
+        System.out.println("Here Are All Movies By Actor: "+ actor.getFirstName() + " With ID: "+ actorId);
+        for (Map.Entry<Integer, Movie> movieEntry : movieRepository.getMovieMap().entrySet()){
+            List<Actor> cast = movieEntry.getValue().getCast();
+            cast.forEach(castItem -> {
+                if(actorId==castItem.getPersonId())
+                {
+                    System.out.println("* " + movieEntry.getValue().getMovieName());
+                }
+            });
+        }
+        System.out.println("<----- Listed All Movies By Given Actor ----->");
+    }
+
+    public void movieByDirector(Integer directorId, MovieRepository movieRepository, DirectorRepository directorRepository) {
+        Director director = directorRepository.getDirectorMap().get(directorId);
+        System.out.println("Here Are All Movies By Director: "+ director.getFirstName() + " With ID: "+ director);
+        for (Map.Entry<Integer,Movie> movieEntry : movieRepository.getMovieMap().entrySet()){
+           Integer keyId = movieEntry.getValue().getMovieDirector().getPersonId();
+           if(directorId == keyId){
+               System.out.println("* " + movieEntry.getValue().getMovieName());
+           }
+        }
+        System.out.println("<----- Listed All Movies By Given Director ----->");
+    }
+
+    public void movieByGenre(MovieGenre genre, MovieRepository movieRepository) {
+        System.out.println("Here Are All Movies Of Genre: "+ genre);
+        for (Map.Entry<Integer,Movie> movieEntry : movieRepository.getMovieMap().entrySet()){
+          MovieGenre keyGenre =  movieEntry.getValue().getMovieGenre();
+          if(keyGenre == genre){
+              System.out.println("* " + movieEntry.getValue().getMovieName());
+          }
+        }
+        System.out.println("<----- Listed All Movies By Given Director ----->");
     }
 }

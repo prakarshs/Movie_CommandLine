@@ -32,6 +32,7 @@ public class MovieCrudServiceIMPL implements MovieCrudService {
         Movie movie;
         try {
             movie = Movie.builder()
+                    .movieId(movieIndex)
                     .movieRegCode(movieRegCode)
                     .movieName(movieName)
                     .movieGenre(movieGenre)
@@ -58,6 +59,7 @@ public class MovieCrudServiceIMPL implements MovieCrudService {
 
         try {
             director = Director.builder()
+                    .personId(directorIndex)
                     .firstName(firstName)
                     .secondName(secondName)
                     .personGender(personGender)
@@ -84,6 +86,7 @@ public class MovieCrudServiceIMPL implements MovieCrudService {
         Actor actor;
         try {
             actor = Actor.builder()
+                    .personId(actorIndex)
                     .firstName(firstName)
                     .secondName(secondName)
                     .personGender(personGender)
@@ -179,6 +182,26 @@ public class MovieCrudServiceIMPL implements MovieCrudService {
     public void listAllDirectorGrosser(Integer target, Boolean more) {
         listItems.directorGrosserTarget(target,more,directorRepository);
 
+    }
+
+    @Override
+    public void listAllMovies() {
+        listItems.movieListDisplay(movieRepository);
+    }
+
+    @Override
+    public void listMovieByActor(Integer actorId) {
+        listItems.movieByActor(actorId,movieRepository,actorRepository);
+    }
+
+    @Override
+    public void listMovieByDirector(Integer directorId) {
+        listItems.movieByDirector(directorId,movieRepository,directorRepository);
+    }
+
+    @Override
+    public void listMovieByGenre(MovieGenre genre) {
+        listItems.movieByGenre(genre,movieRepository);
     }
 
     @Override
