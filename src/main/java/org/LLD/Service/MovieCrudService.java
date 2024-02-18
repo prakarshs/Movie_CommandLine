@@ -30,4 +30,6 @@ public interface MovieCrudService {
     void listAllActors();
 
     void listAllActorAward(Integer target, Boolean more);
+
+    void listAllActorMovie(Integer target, Boolean more);
 }

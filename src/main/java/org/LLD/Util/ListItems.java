@@ -49,4 +49,25 @@ public class ListItems {
         }
         System.out.println("<----- Listed All Actors ----->");
     }
+
+    public void actorMovieTarget(Integer target, Boolean more, ActorRepository actorRepository) {
+        if(more){
+            System.out.println("Actors Who Have Done Movies More Than " + target + " Are: ");
+            for (Map.Entry<Integer,Actor> actorEntry : actorRepository.getActorMap().entrySet()){
+                if (actorEntry.getValue().getNumberOfMovies() >= target){
+
+                    System.out.println(actorEntry.getValue().getFirstName() + actorEntry.getValue().getSecondName() +" Has Done " + actorEntry.getValue().getNumberOfMovies());
+                }
+            }
+        }
+        else{
+            System.out.println("Actors Who Have Done Movies Less Than " + target + " Are: ");
+            for (Map.Entry<Integer,Actor> actorEntry : actorRepository.getActorMap().entrySet()){
+                if (actorEntry.getValue().getNumberOfMovies() < target){
+                    System.out.println(actorEntry.getValue().getFirstName() + actorEntry.getValue().getSecondName() +" Has Done " + actorEntry.getValue().getNumberOfMovies());
+                }
+            }
+        }
+        System.out.println("<----- Listed All Actors ----->");
+    }
 }

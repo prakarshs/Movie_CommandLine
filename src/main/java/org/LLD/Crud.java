@@ -122,6 +122,13 @@ public class Crud {
                             more = false;
                             movieCrudService.listAllActorAward(target,more);
                         }
+                        else if (input[2].equals(String.valueOf(ActorFilterMoreThan.movie_more_than))) {
+                            movieCrudService.listAllActorMovie(target,more);
+                        }
+                        else if (input[2].equals(String.valueOf(ActorFilterLessThan.movie_less_than))) {
+                            more = false;
+                            movieCrudService.listAllActorMovie(target,more);
+                        }
                     }
                 }
                 break;

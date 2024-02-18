@@ -153,5 +153,10 @@ public class MovieCrudServiceIMPL implements MovieCrudService {
         listItems.actorAwardTarget(target,more,actorRepository);
     }
 
+    @Override
+    public void listAllActorMovie(Integer target, Boolean more) {
+        listItems.actorMovieTarget(target,more,actorRepository);
+    }
+
 
 }
