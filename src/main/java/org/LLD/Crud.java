@@ -129,6 +129,21 @@ public class Crud {
                             more = false;
                             movieCrudService.listAllActorMovie(target,more);
                         }
+                        else if (input[2].equals(String.valueOf(ActorFilterMoreThan.lead_more_than))) {
+                            movieCrudService.listAllActorLead(target,more);
+                        }
+                        else if (input[2].equals(String.valueOf(ActorFilterLessThan.lead_less_than))) {
+                            more = false;
+                            movieCrudService.listAllActorLead(target,more);
+                        }
+                        else if (input[2].equals(String.valueOf(ActorFilterMoreThan.support_more_than))) {
+                            movieCrudService.listAllActorSupport(target,more);
+                        }
+                        else if (input[2].equals(String.valueOf(ActorFilterLessThan.support_less_than))) {
+                            more = false;
+                            movieCrudService.listAllActorSupport(target,more);
+                        }
+
                     }
                 }
                 break;
