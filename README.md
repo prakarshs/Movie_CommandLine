@@ -36,9 +36,18 @@
 
 Display Commands:
 
-1. actor/director
+1. actor and director
    * none
    * awards more/less than n
    * lead roles more/less than n
    * support roles more/less than n
-   
+
+
+2. actor exclusive
+   * lead roles more/less than n
+   * support roles more/less than n
+
+
+3. director exclusive
+   * highest grosser more/less than n
+   * is/not a producer
