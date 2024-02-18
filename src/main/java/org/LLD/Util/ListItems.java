@@ -13,9 +13,10 @@ public class ListItems {
     public void actorListDisplay(ActorRepository actorRepository) {
         System.out.println("Here Are All Actors: ");
         for(Map.Entry<Integer, Actor> counter : actorRepository.getActorMap().entrySet()){
-            System.out.println("\n" + "Actor Number: "+ counter.getKey());
+            System.out.println("\n"+ "Actor Number: "+ counter.getKey());
             displayDetails.displayThisActor(counter.getValue());
         }
+        System.out.println("<----- Listed All Actors ----->");
     }
 
     public List<String> listActorsInMovie(Movie movie) {
@@ -25,5 +26,27 @@ public class ListItems {
             actorsInMovie.add(actor.getFirstName() + " " + actor.getSecondName());
         });
         return actorsInMovie;
+    }
+
+    public void actorAwardTarget(Integer target, Boolean more, ActorRepository actorRepository) {
+
+        if(more){
+            System.out.println("Actors Who Have Won Awards More Than " + target + " Are: ");
+            for (Map.Entry<Integer,Actor> actorEntry : actorRepository.getActorMap().entrySet()){
+                if (actorEntry.getValue().getNumberOfAwards() >= target){
+
+                    System.out.println(actorEntry.getValue().getFirstName() + actorEntry.getValue().getSecondName() +" Has Won " + actorEntry.getValue().getNumberOfAwards());
+                }
+            }
+        }
+        else{
+            System.out.println("Actors Who Have Won Awards Less Than " + target + " Are: ");
+            for (Map.Entry<Integer,Actor> actorEntry : actorRepository.getActorMap().entrySet()){
+                if (actorEntry.getValue().getNumberOfAwards() < target){
+                    System.out.println(actorEntry.getValue().getFirstName() + actorEntry.getValue().getSecondName() +" Has Won " + actorEntry.getValue().getNumberOfAwards());
+                }
+            }
+        }
+        System.out.println("<----- Listed All Actors ----->");
     }
 }

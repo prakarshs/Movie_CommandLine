@@ -2,6 +2,7 @@ package org.LLD;
 
 import org.LLD.Constants.Commands;
 import org.LLD.Constants.Enums.CreateType;
+import org.LLD.Constants.Enums.Filters.LessThan.ActorFilterLessThan;
 import org.LLD.Constants.Enums.Filters.MoreThan.ActorFilterMoreThan;
 import org.LLD.Constants.Enums.Gender;
 import org.LLD.Constants.Enums.MovieGenre;
@@ -112,8 +113,18 @@ public class Crud {
                         if(input[2].equals(String.valueOf(ActorFilterMoreThan.none))){
                             movieCrudService.listAllActors();
                         }
+                        Integer target =Integer.parseInt(input[3]);
+                        Boolean more = true;
+                        if (input[2].equals(String.valueOf(ActorFilterMoreThan.award_more_than))) {
+                            movieCrudService.listAllActorAward(target,more);
+                        }
+                        else if (input[2].equals(String.valueOf(ActorFilterLessThan.award_less_than))) {
+                            more = false;
+                            movieCrudService.listAllActorAward(target,more);
+                        }
                     }
                 }
+                break;
                 default: {
                     System.out.println("THERE HAS BEEN AN ERROR");
                 }

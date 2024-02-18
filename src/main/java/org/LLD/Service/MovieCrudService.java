@@ -28,4 +28,6 @@ public interface MovieCrudService {
     void displayMovie(Movie movie);
 
     void listAllActors();
+
+    void listAllActorAward(Integer target, Boolean more);
 }
