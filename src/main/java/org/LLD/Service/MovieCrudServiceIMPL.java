@@ -26,11 +26,11 @@ public class MovieCrudServiceIMPL implements MovieCrudService {
 
     @Override
     public String createMovie(String movieName, MovieGenre movieGenre, Director movieDirector, String movieReleaseDate, List<Actor> cast) {
-        String movieId = movieIndex + "_" + movieGenre + "_" + movieReleaseDate;
+        String movieRegCode = movieIndex + "_" + movieGenre + "_" + movieReleaseDate;
         Movie movie;
         try {
             movie = Movie.builder()
-                    .movieId(movieId)
+                    .movieRegCode(movieRegCode)
                     .movieName(movieName)
                     .movieGenre(movieGenre)
                     .movieDirector(movieDirector)
@@ -42,7 +42,7 @@ public class MovieCrudServiceIMPL implements MovieCrudService {
         }
         movieRepository.getMovieMap().put(movieIndex, movie);
 
-        String movieCreatedResponse = "CREATED MOVIE WITH ID: " + movieRepository.getMovieMap().get(movieIndex).getMovieId() + " AND ITS NAME IS: " + movieRepository.getMovieMap().get(movieIndex).getMovieName()+ " AND IS DIRECTED BY: " + movieRepository.getMovieMap().get(movieIndex).getMovieDirector().getFirstName() + movieRepository.getMovieMap().get(movieIndex).getMovieDirector().getSecondName();
+        String movieCreatedResponse = "CREATED MOVIE WITH ID: " + movieRepository.getMovieMap().get(movieIndex).getMovieRegCode() + " AND ITS NAME IS: " + movieRepository.getMovieMap().get(movieIndex).getMovieName()+ " AND IS DIRECTED BY: " + movieRepository.getMovieMap().get(movieIndex).getMovieDirector().getFirstName() + movieRepository.getMovieMap().get(movieIndex).getMovieDirector().getSecondName();
 
         movieIndex++;
 
@@ -114,6 +114,11 @@ public class MovieCrudServiceIMPL implements MovieCrudService {
     }
 
     @Override
+    public Movie findMovieById(Integer movieId) {
+        return validityChecks.findMovieByIdValid(movieId, movieRepository);
+    }
+
+    @Override
     public void listAllDirectors() {
         System.out.println("HERE'S ALL YOUR DIRECTORS"+ directorRepository.getDirectorMap().size());
         for (Map.Entry<Integer, Director> entry :directorRepository.getDirectorMap().entrySet()) {
@@ -130,4 +135,11 @@ public class MovieCrudServiceIMPL implements MovieCrudService {
     public void displayDirector(Director director) {
         displayDetails.displayThisDirector(director);
     }
+
+    @Override
+    public void displayMovie(Movie movie) {
+        displayDetails.displayThisMovie(movie);
+    }
+
+
 }

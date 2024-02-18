@@ -3,14 +3,12 @@ package org.LLD.Util;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 import org.LLD.Entity.Actor;
 import org.LLD.Entity.Director;
+import org.LLD.Entity.Movie;
 import org.LLD.Repository.ActorRepository;
 import org.LLD.Repository.DirectorRepository;
-
-import java.util.Map;
-import java.util.NoSuchElementException;
+import org.LLD.Repository.MovieRepository;
 
 @Data
 @AllArgsConstructor
@@ -31,5 +29,13 @@ public class ValidityChecks {
             System.out.println("THE GIVEN ACTOR ID DOESNT EXIST. TRY AGAIN WITH A DIFFERENT ID.");
         }else System.out.println("Actor Id Is Valid !!");
         return actor;
+    }
+
+    public Movie findMovieByIdValid(Integer movieId, MovieRepository movieRepository) {
+        Movie movie = movieRepository.getMovieMap().get(movieId);
+        if(movie==null){
+            System.out.println("THE GIVEN MOVIE ID DOESNT EXIST. TRY AGAIN WITH A DIFFERENT ID.");
+        }else System.out.println("Actor Id Is Valid !!");
+        return movie;
     }
 }

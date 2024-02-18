@@ -5,6 +5,7 @@ import lombok.Builder;
 import lombok.Data;
 import org.LLD.Entity.Actor;
 import org.LLD.Entity.Director;
+import org.LLD.Entity.Movie;
 
 @AllArgsConstructor
 @Data
@@ -19,7 +20,7 @@ public class DisplayDetails {
         + "Actor Number Of Awards: "+ actor.getNumberOfAwards()+ "\n"
         + "Actor Lead Roles: "+ actor.getNumberOfLeadRoles()+ "\n"
         + "Actor Support Roles: "+ actor.getNumberOfSupportRoles()+ "\n"
-        + "Actor Intro: "+ actor.getPersonIntro()+ "\n"
+        + "Actor Intro: "+ actor.getPersonIntro()
         );
     }
     public void displayThisDirector(Director director) {
@@ -31,8 +32,17 @@ public class DisplayDetails {
         + "Director Number Of Awards: "+ director.getNumberOfAwards()+ "\n"
         + "Director Produces Movies: "+ director.isProducedMovies()+ "\n"
         + "Director Highest Grosser: "+ director.getHighestGrosser()+ "\n"
-        + "Director Intro: "+ director.getPersonIntro()+ "\n"
+        + "Director Intro: "+ director.getPersonIntro()
         );
     }
 
+    public void displayThisMovie(Movie movie) {
+        System.out.println("Movie Reg Code: " + movie.getMovieRegCode() + "\n"
+                + "Movie Name: " + movie.getMovieName() + "\n"
+                + "Movie Genre: "+ movie.getMovieGenre() + "\n"
+                + "Movie Director: "+ movie.getMovieDirector().getFirstName() + "\n"
+                + "Movie Cast: "+ movie.getCast() + "\n"
+                + "Movie Release Date: "+ movie.getMovieReleaseYear()
+                );
+    }
 }

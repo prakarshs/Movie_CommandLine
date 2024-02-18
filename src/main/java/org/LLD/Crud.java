@@ -7,6 +7,7 @@ import org.LLD.Constants.Enums.MovieGenre;
 import org.LLD.Constants.Enums.ShowFilter;
 import org.LLD.Entity.Actor;
 import org.LLD.Entity.Director;
+import org.LLD.Entity.Movie;
 import org.LLD.Service.MovieCrudService;
 import org.LLD.Service.MovieCrudServiceIMPL;
 
@@ -92,6 +93,18 @@ public class Crud {
                         movieCrudService.displayDirector(director);
 
                     }
+                    else if (input[1].equals(String.valueOf(ShowFilter.movie))) {
+                        System.out.println("||----- Checking For Movie Ids Validity -----||");
+                        Movie movie = movieCrudService.findMovieById(Integer.parseInt(input[2]));
+                        if(movie==null){
+                            System.out.println("Movie Doesnt Exist. Retry.");
+                            break;
+                        }
+                        System.out.println("Here's Your Required Director Details: ");
+                        movieCrudService.displayMovie(movie);
+
+                    }
+
                 }
                 break;
                 default: {

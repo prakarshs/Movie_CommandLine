@@ -14,7 +14,7 @@ import java.util.List;
 @NoArgsConstructor
 @Builder
 public class Movie {
-    private String movieId;
+    private String movieRegCode;
     private String movieName;
     private MovieGenre movieGenre;
     private Director movieDirector;

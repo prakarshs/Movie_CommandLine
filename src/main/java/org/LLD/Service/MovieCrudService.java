@@ -4,6 +4,7 @@ import org.LLD.Constants.Enums.Gender;
 import org.LLD.Constants.Enums.MovieGenre;
 import org.LLD.Entity.Actor;
 import org.LLD.Entity.Director;
+import org.LLD.Entity.Movie;
 
 import java.util.Date;
 import java.util.List;
@@ -18,9 +19,11 @@ public interface MovieCrudService {
     Director findDirectorById(Integer directorId);
 
     Actor findActorById(Integer castInput);
+    Movie findMovieById(Integer movieId);
 
     void listAllDirectors();
 
     void displayActor(Actor actor);
     void displayDirector(Director director);
+    void displayMovie(Movie movie);
 }
