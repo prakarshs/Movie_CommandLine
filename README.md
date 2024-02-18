@@ -1,8 +1,8 @@
 # COMMAND LINE MOVIE CRUD
 
-- Create Display Update And Delete Movies
-- Each Movie Has Cast Which Is List Of Actors
-- Each Movie Has Director
+### - Create Display Update And Delete Movies
+### - Each Movie Has Cast Which Is List Of Actors
+### - Each Movie Has Director
 
 ---
 
